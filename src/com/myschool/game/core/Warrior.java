@@ -34,7 +34,7 @@ public abstract class Warrior extends Character {
 		//System.out.println(this.getName() + " dit: je suis un guerrier");
 	}
 	
-	public void resolveFightAction(Character character) {
+	protected void resolveFightAction(Character character) {
 		int dammage = (int )(Math.random() * weaponPower);
 		character.inflictDammage(dammage);
 	}

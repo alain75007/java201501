@@ -7,22 +7,29 @@ public abstract class  Character {
 	// private static int characterCount; // Variable de classe 
 	private String name; // Variable d'instance
 	private int livePoint = 10; // Variable d'instance
-	private static ArrayList<Character> characters = new ArrayList<Character>();
+	private static final ArrayList<Character> characters = new ArrayList<Character>();
 	
 	public String getName() {
 		return name;
 	}	
 	public Character(String name) { // Constructeur
-		characters.add(this);
+		this.initialize(name);
+	}
+
+	public Character(String name, int livePoint) { // Constructeur
+		setLivePoint(livePoint);
+		this.initialize(name);
+	}
+	
+	private void initialize(String name) {
+		synchronized(characters) {
+			characters.add(this);
+		}
 		this.name = name;
 		//characterCount++;
 		this.disBonjour();
 	}
-
-	public Character(String name, int livePoint) { // Constructeur
-		this(name);
-		setLivePoint(livePoint);
-	}
+	
 	public int getLivePoint() { // Méthode d'instance (getter)
 		return livePoint;
 	}
